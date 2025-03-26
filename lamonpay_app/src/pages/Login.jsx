@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
+import { apiUrl } from "../utils/contants";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
@@ -15,7 +16,7 @@ const Login = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:8000/auth/login", { email, password })
+      .post(`${apiUrl}/auth/login`, { email, password })
       .then((response) => {
         console.log(response.data);
         localStorage.setItem("user", JSON.stringify(response.data.user));

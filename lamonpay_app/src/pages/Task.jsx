@@ -6,6 +6,7 @@ import TaskCard from "../components/TaskCard";
 import Pagination from "../components/Pagination";
 import axios from "axios";
 import TaskModal from "../components/TaskModal";
+import { apiUrl } from "../utils/contants";
 
 const Task = () => {
   const [page, setPage] = React.useState(1);
@@ -21,7 +22,7 @@ const Task = () => {
 
   const fetchTask = async (pageNo = 1) => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/fetchAllTasks`, {
+      const { data } = await axios.get(`${apiUrl}/fetchAllTasks`, {
         params: { page: pageNo, limit: 5 },
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -42,7 +43,7 @@ const Task = () => {
       const token = JSON.parse(localStorage.getItem("token"));
       console.log(token);
       axios
-        .post(`http://localhost:8000/add`, newTask, {
+        .post(`${apiUrl}/add`, newTask, {
           headers: {
             Authorization: `Bearer ${JSON.parse(
               localStorage.getItem("token")
@@ -67,7 +68,7 @@ const Task = () => {
   const editTask = (id, editData) => {
     try {
       axios
-        .put(`http://localhost:8000/updateTaskById/${id}`, editData, {
+        .put(`${apiUrl}/updateTaskById/${id}`, editData, {
           headers: {
             Authorization: `Bearer ${JSON.parse(
               localStorage.getItem("token")
@@ -90,7 +91,7 @@ const Task = () => {
   const deleteTask = (id) => {
     try {
       axios
-        .delete(`http://localhost:8000/deleteTaskById/${id}`, {
+        .delete(`${apiUrl}/deleteTaskById/${id}`, {
           headers: {
             Authorization: `Bearer ${JSON.parse(
               localStorage.getItem("token")

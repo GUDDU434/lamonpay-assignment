@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { apiUrl } from "../utils/contants";
 
 const SignUp = () => {
   const [email, setEmail] = React.useState("");
@@ -21,7 +22,7 @@ const SignUp = () => {
     }
 
     axios
-      .post("http://localhost:8000/auth/signup", { email, password })
+      .post(`${apiUrl}/auth/signup`, { email, password })
       .then((response) => {
         console.log(response.data);
         navigate("/login");
